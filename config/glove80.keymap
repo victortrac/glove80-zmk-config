@@ -18,6 +18,7 @@
 #define LOWER 1
 #define MAGIC 2
 #define FACTORY_TEST 3
+#define AS(keycode) &as LS(keycode) keycode     // Autoshift Macro
 
 / {
     behaviors {
@@ -38,6 +39,26 @@
             flavor = "tap-preferred";
             tapping-term-ms = <200>;
             bindings = <&mo>, <&rgb_ug_status_macro>;
+        };
+
+        as: auto_shift {
+            compatible = "zmk,behavior-hold-tap";
+            label = "AUTO_SHIFT";
+            #binding-cells = <2>;
+            tapping_term_ms = <200>;
+            quick_tap_ms = <0>;
+            flavor = "tap-preferred";
+            bindings = <&kp>, <&kp>;
+        };
+
+        // turn shift+backspace into a delete key
+        bspc_del: backspace_delete {
+            compatible = "zmk,behavior-mod-morph";
+            label = "BACKSPACE_DELETE";
+            #binding-cells = <0>;
+            bindings = <&kp BACKSPACE>, <&kp DELETE>;
+            mods = <(MOD_LSFT|MOD_RSFT)>;
+            keep-mods = <(MOD_RSFT)>;
         };
     };
 
@@ -100,12 +121,12 @@
             // | MAGIC | HOME| END | LEFT | RIGHT|      | BSPC  | DEL   | LALT  | | RALT  | RET   | SPACE |      |  UP   | DOWN  |  [   |   ]   | PGDN |
 
             bindings = <
-            &kp F1         &kp F2   &kp F3      &kp F4      &kp F5                                                                                         &kp F6  &kp F7      &kp F8      &kp F9      &kp F10
-            &kp EQUAL      &kp N1   &kp N2      &kp N3      &kp N4      &kp N5                                                                     &kp N6  &kp N7  &kp N8      &kp N9      &kp N0      &kp MINUS
-            &kp TAB        &kp Q    &kp W       &kp E       &kp R       &kp T                                                                      &kp Y   &kp U   &kp I       &kp O       &kp P       &kp BSLH
-            &kp ESC        &kp A    &kp S       &kp D       &kp F       &kp G                                                                      &kp H   &kp J   &kp K       &kp L       &kp SEMI    &kp SQT
-            &kp GRAVE      &kp Z    &kp X       &kp C       &kp V       &kp B   &kp LSHFT   &kp LCTRL   &layer_td  &kp LGUI  &kp RCTRL &kp RSHFT   &kp N   &kp M   &kp COMMA   &kp DOT     &kp FSLH    &kp PG_UP
-            &magic MAGIC 0 &kp HOME &kp END     &kp LEFT    &kp RIGHT           &kp BSPC    &kp DEL     &kp LALT   &kp RALT  &kp RET   &kp SPACE           &kp UP  &kp DOWN    &kp LBKT    &kp RBKT    &kp PG_DN
+            &kp F1    &mt LG(N1) F2   &mt LG(N2) F3    &mt LG(N3) F4     &kp F5                                                        &kp F6     &kp F7    &kp F8    &kp F9    &kp F10
+            AS(EQUAL)    AS(N1)   AS(N2)    AS(N3)     AS(N4)  AS(N5)                                                                   AS(N6)  AS(N7)     AS(N8)    AS(N9)    AS(N0)  &kp PG_UP
+            &kp TAB     &kp Q    &kp W     &kp E      &kp R   &kp T                                                                   &kp Y   &kp U      &kp I     &kp O     &kp P   &kp PG_DN
+            &kp ESC     &kp A    &kp S     &kp D      &kp F   &kp G                                                                   &kp H   &kp J      &kp K     &kp L  AS(SEMI)   AS(SQT)
+            AS(GRAVE)     &kp Z    &kp X     &kp C      &kp V   &kp B  &kp LSHFT  &kp LGUI    &lower     &kp RGUI  &kp RCTRL  &kp RSHFT   &kp N   &kp M  AS(COMMA)   AS(DOT)  AS(FSLH) AS(MINUS)
+            &magic 2 0  &kp HOME  &kp END  &kp LEFT  &kp RIGHT           &bspc_del    &kp LCTRL &kp LALT  &kp RALT    &kp RET  &kp SPACE          &kp UP   &kp DOWN    AS(LBKT) AS(RBKT) AS(BSLH)
             >;
         };
 
