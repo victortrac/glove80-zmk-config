@@ -23,6 +23,8 @@
 #include <dt-bindings/zmk/rgb.h>
 #include <dt-bindings/zmk/outputs.h>
 
+#define AS(keycode) &as LS(keycode) keycode     // Autoshift Macro
+
 / {
     /* Glove80 system behavior & macros */
     behaviors {
@@ -121,11 +123,11 @@
         base_layer {
             bindings = <
      &kp F1    &kp F2   &kp F3    &kp F4     &kp F5                                                                                  &kp F6     &kp F7    &kp F8    &kp F9    &kp F10
-  &kp EQUAL    &kp AS(N1)   &kp AS(N2)    &kp AS(N3)     &kp AS(N4)  &kp AS(N5)                                                                  &kp AS(N6)  &kp AS(N7)     &kp AS(N8)    &kp AS(N9)    &kp AS(N0)  &kp MINUS
-    &kp TAB     &kp Q    &kp W     &kp E      &kp R   &kp T                                                                   &kp Y   &kp U      &kp I     &kp O     &kp P   &kp BSLH
-    &kp ESC     &kp A    &kp S     &kp D      &kp F   &kp G                                                                   &kp H   &kp J      &kp K     &kp L  &kp SEMI    &kp SQT
-  &kp GRAVE     &kp Z    &kp X     &kp C      &kp V   &kp B  &kp LSHFT  &kp LGUI    &lower     &kp RGUI  &kp RCTRL  &kp RSHFT   &kp N   &kp M  &kp COMMA   &kp DOT  &kp FSLH  &kp PG_UP
- &magic 2 0  &kp HOME  &kp END  &kp LEFT  &kp RIGHT           &kp BSPC    &kp LCTRL &kp LALT  &kp RALT    &kp RET  &kp SPACE          &kp UP   &kp DOWN  &kp LBKT  &kp RBKT  &kp PG_DN
+  AS(EQUAL)    AS(N1)   AS(N2)    AS(N3)     AS(N4)  AS(N5)                                                                   AS(N6)  AS(N7)     AS(N8)    AS(N9)    AS(N0)  AS(MINUS)
+    &kp TAB     &kp Q    &kp W     &kp E      &kp R   &kp T                                                                   &kp Y   &kp U      &kp I     &kp O     &kp P   AS(BSLH)
+    &kp ESC     &kp A    &kp S     &kp D      &kp F   &kp G                                                                   &kp H   &kp J      &kp K     &kp L  AS(SEMI)   AS(SQT)
+  AS(GRAVE)     &kp Z    &kp X     &kp C      &kp V   &kp B  &kp LSHFT  &kp LGUI    &lower     &kp RGUI  &kp RCTRL  &kp RSHFT   &kp N   &kp M  AS(COMMA)   AS(DOT)  AS(FSLH) &kp PG_UP
+ &magic 2 0  &kp HOME  &kp END  &kp LEFT  &kp RIGHT           &kp BSPC    &kp LCTRL &kp LALT  &kp RALT    &kp RET  &kp SPACE          &kp UP   &kp DOWN    AS(LBKT) AS(RBKT)  &kp PG_DN
             >;
         };
 
