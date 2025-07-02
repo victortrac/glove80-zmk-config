@@ -126,7 +126,7 @@
             &kp TAB     &kp Q    &kp W     &kp E      &kp R   &kp T                                                                   &kp Y   &kp U      &kp I     &kp O     &kp P   &kp PG_DN
             &kp ESC     &kp A    &kp S     &kp D      &kp F   &kp G                                                                   &kp H   &kp J      &kp K     &kp L  AS(SEMI)   AS(SQT)
             AS(GRAVE)     &kp Z    &kp X     &kp C      &kp V   &kp B  &kp LSHFT  &kp LGUI    &layer_td     &kp RGUI  &kp RCTRL  &kp RSHFT   &kp N   &kp M  AS(COMMA)   AS(DOT)  AS(FSLH) AS(MINUS)
-            &magic 2 0  &kp HOME  &kp END  &kp UP &kp DOWN           &bspc_del    &kp LCTRL &kp LALT  &kp RALT    &kp RET  &kp SPACE          &kp LEFT   &kp RIGHT    AS(LBKT) AS(RBKT) AS(BSLH)
+            &magic 2 0  &kp HOME  &kp END  &kp DOWN &kp UP           &bspc_del    &kp LCTRL &kp LALT  &kp RALT    &kp RET  &kp SPACE          &kp LEFT   &kp RIGHT    AS(LBKT) AS(RBKT) AS(BSLH)
             >;
         };
 
